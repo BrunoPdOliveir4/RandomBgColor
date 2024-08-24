@@ -7,12 +7,17 @@ btn.addEventListener('click', changeColor);
 function changeColor(){
     const randomNumber = getRandomNumber();
     changeBackgroundColor(randomNumber)
-    
 }
 
-function changeBackgroundColor(newColor){
-    document.body.style.backgroundColor = colors[newColor];
-    color.textContent = colors[newColor];
+// The code idea is "change color" so if it send the same color, than it will call changeColor again
+function changeBackgroundColor(newColor){ 
+    let bgColor = document.body.style.backgroundColor;
+    if(colors[newColor] != bgColor){
+        document.body.style.backgroundColor = colors[newColor];
+        color.textContent = colors[newColor];
+        return;
+    }
+    changeColor();
 }
 
 function getRandomNumber(){
